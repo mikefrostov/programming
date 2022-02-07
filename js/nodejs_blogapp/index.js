@@ -47,7 +47,7 @@ app.use(expressSession({
 app.use(fileUpload());
 app.use(express.static('public'));
 app.use(expressEdge);
-mongoose.connect('mongodb://localhost:27017/node-blog', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27018/node-blog', { useNewUrlParser: true })
     .then(() => 'You are now connected to Mongo!')
     .catch(err => console.error('Something went wrong', err))
 
