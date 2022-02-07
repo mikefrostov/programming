@@ -5,7 +5,7 @@ const express = require('express');
 const Prometheus = require('prom-client');
 const expressEdge = require('express-edge');
 const app = express();
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 const metricsInterval = Prometheus.collectDefaultMetrics();
 const mongoose = require('mongoose');
 const connectMongo = require('connect-mongo');
@@ -47,7 +47,7 @@ app.use(expressSession({
 app.use(fileUpload());
 app.use(express.static('public'));
 app.use(expressEdge);
-mongoose.connect('mongodb://localhost:27018/node-blog', { useNewUrlParser: true })
+mongoose.connect('mongodb://mongodb:27017/node-blog', { useNewUrlParser: true })
     .then(() => 'You are now connected to Mongo!')
     .catch(err => console.error('Something went wrong', err))
 
