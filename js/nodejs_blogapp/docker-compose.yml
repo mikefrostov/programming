@@ -4,7 +4,10 @@ services:
     build: .
     ports:
       - "8080:8080"
-    network_mode: "host"
+    depends_on:
+      - mongo
+    networks:
+      - nodejs-blog-network
   prometheus:
     image: prom/prometheus:latest
     volumes:
@@ -13,14 +16,36 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - "9090:9090"
-    network_mode: "host" 
+    networks:
+      - nodejs-blog-network
   grafana:
     image: grafana/grafana:5.4.4
     depends_on:
       - prometheus
     ports:
       - "3000:3000"
-    network_mode: "host"
     volumes:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
+    networks:
+      - nodejs-blog-network
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - blogdata:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - nodejs-blog-network
 
+networks:
+  nodejs-blog-network:
+    driver: bridge
+
+volumes:
+  blogdata:
