@@ -38,8 +38,8 @@ services:
 #      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - blogdata:/data/db
-    ports:
-      - "27018:27017"
+#    ports:
+#      - "27018:27017"
     networks:
       - nodejs-blog-network
 
