@@ -24,6 +24,6 @@ Grafana is accessible on port 3000
 ## minikube 
 
 ```
-sudo docker build -t mikefrostov/node-web-app .
+sudo docker build -t <username>/node-web-app .
 kubectl apply -f deployment-kube.yml
 ```
