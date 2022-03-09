@@ -2,14 +2,16 @@ version: '3'
  
 services:
   app:
+    container_name: django-redis-app
     build:
-      context: .
+      context: ./app
     ports:
       - "8888:8888"
     volumes:
       - ./app:/app
     networks:
       - django-celery-network
+    
     command: >
       sh -c "python3 manage.py migrate &&
              python3 manage.py wait_for_db &&
@@ -22,15 +24,18 @@ services:
  
   db:
     image: postgres:10-alpine
+    container_name: django-redis-db
     env_file:
-      - ./.env.dev
+      - ./.env
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
     - django-celery-network
   redis:
+    container_name: django-redis
     image: redis:alpine
   celery:
+    container_name: django-redis-celery
     restart: always
     build:
       context: .
