@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  strapiexample:
+  strapiegridsome:
     image: strapi/strapi
-    container_name: strapiexample
+    container_name: strapigridsome
     restart: unless-stopped
     env_file: .env
     environment:
@@ -16,29 +16,25 @@ services:
     #    links:
     #      - mongo:mongo
     networks:
-      - strapi-app-network
+      - strapi-gridsome-network
     volumes:
       - ./app:/srv/app
-    ports:
-      - "1337:1337"
 
   mongoexample:
     image: mongo
-    container_name: mongoexample
+    container_name: mongogridsome
     restart: unless-stopped
     env_file: .env
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     networks:
-      - strapi-app-network
+      - strapi-gridsome-network
     volumes:
       - strapidata:/data/db
-    ports:
-      - "27017:27017"
 
 networks:
-  strapi-app-network:
+  strapi-gridsome-network:
     driver: bridge
 
 volumes:

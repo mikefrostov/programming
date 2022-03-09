@@ -20,7 +20,7 @@ module.exports = function (api) {
   })
 
   api.loadSource(async actions => {
-    const { data } = await axios.get('http://morozovme.com:1337/events')
+    const { data } = await axios.get('http://gridsome.morozovme.com/events')
 
     const collection = actions.addCollection({
       typeName: 'Event',
