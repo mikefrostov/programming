@@ -4,7 +4,10 @@
 ## implement an app that would:
 
 1) generate logs of format:
+
 yyyy-mm-dd <log message>
+
+example: 2022-03-01 00:40:49 DSOnlineHttpParser is running ...
 
 2) write these logs to a file
 
