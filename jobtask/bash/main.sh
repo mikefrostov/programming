@@ -21,14 +21,14 @@ function generate_logfile() {
 function cut_logfile() {
     echo "deleting logs from a logfle older than 7 days"
     curr=$(date +%s)
-    temp=$(($curr-24444))
+    temp=$(($curr-604800))
     
     while read line; do
         linedate=$(echo $line | awk '{ print $1 }')
         inseconds=$(date -d $linedate '+%s')
         if [ "$inseconds" -lt "$temp" ]; then
-            echo "removing a line: " $line
-            sed -i '/$line/d' $filename
+            echo "removing: " $line
+            sed -i "/$line/d" "$filename"
         fi
     done <$filename
 
