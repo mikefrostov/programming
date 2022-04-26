@@ -31,7 +31,8 @@ function cut_logfile() {
             sed -i "/$line/d" "$filename"
         fi
     done <$filename
-
+    echo "--------- result ---------"
+    cat $filename
 
 #    awk -F'[,.]' 'NR==1 || (systime()-mktime($3" "$2" "$1" 0 0 0")) <= 7*24*60*60' $filename
 #        awk '$0 <= "$temp"'
