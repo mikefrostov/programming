@@ -15,20 +15,22 @@ def generateLogs():
             print(str(d), file=f)
 
 def cutLogs():
+    
     try:
-        with open(path, 'w') as f:
+        with open(path, 'r+') as f:
             lines = f.readlines()
+            print(str(lines))
             for line in lines:
-                if line.strip() in range(datetime.today(), datetime.today() - timedelta(days=7)):
-                    
-
-    except IOError:
-        print('Failure')
+                print(str(line))
+                #if line.strip() in range(datetime.today(), datetime.today() - timedelta(days=7)):
+                #    print(str(line))
+    except IOError as e:
+        print('Failure', e)
     
 
 if __name__ == "__main__":
     generateLogs()
-#    cutLogs()
+    cutLogs()
 
 
 
