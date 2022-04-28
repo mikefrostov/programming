@@ -21,10 +21,13 @@ def cutLogs():
             lines = f.readlines()
             base = datetime.today().date()
             date_list = [base - timedelta(days=x) for x in range(7)]
-            print(date_list)
+            #print(date_list)
+            f.seek(0)
             for line in lines:
                 if datetime.strptime(line.strip(), "%Y-%m-%d").date() in date_list:
-                    print("it is in date_list: "+ line)
+                    print("keeping : " + line)
+                    f.write(line)
+            f.truncate()          
     except IOError as e:
         print('Failure', e)
     
