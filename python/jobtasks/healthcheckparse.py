@@ -37,8 +37,3 @@ if __name__ == "__main__":
     #pq = PyQuery(html)
     #tag = pq('pre')
     #print tag.text()
-
-
-
-
-
