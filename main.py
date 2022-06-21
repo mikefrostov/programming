@@ -2,6 +2,7 @@ import sys
 import requests
 import time
 import urllib
+import re
 #import validators
 from pyquery import PyQuery    
 
@@ -23,11 +24,16 @@ if __name__ == "__main__":
 #        print("URL parsing error: " + url)
     url = sys.argv[1]
     r = requests.get(url)
-    #print(str(r.content).split("\n"))
-    print(r.content)
-
-    
-
+    result = str(r.content).split("\\n")
+    while '' in result:
+        result.remove('')
+    while '\'' in result:
+        result.remove('\'')
+    dict1 = dict(e.split(':') for e in result)
+    print(dict1)
+    #print(re.split('; |, |\*|\\n\'\n', str(r.content)))
+    #d = dict(s.split(':') for s in result)
+    #print(d)
     #pq = PyQuery(html)
     #tag = pq('pre')
     #print tag.text()
