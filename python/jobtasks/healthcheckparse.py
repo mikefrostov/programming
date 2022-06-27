@@ -31,6 +31,10 @@ if __name__ == "__main__":
         result.remove('\'')
     dict1 = dict(e.split(':') for e in result)
     print(dict1)
+    for k,v in dict1.items():
+        if v != ' OK':
+            print(" problem : " + k + " is " + v)
+
     #print(re.split('; |, |\*|\\n\'\n', str(r.content)))
     #d = dict(s.split(':') for s in result)
     #print(d)
