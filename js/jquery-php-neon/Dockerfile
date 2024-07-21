@@ -15,5 +15,9 @@ WORKDIR /usr/src/app
 # Bundle app source
 COPY . .
 
+RUN npm install
+RUN npm install connect
+RUN npm install serve-static
+
 EXPOSE 8086
 CMD [ "node", "server.js" ]
